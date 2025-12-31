@@ -21,25 +21,28 @@ Execute Django admin and create details for 5 Car
 ## PROGRAM
 ```
 models.py
+
 from django.db import models
 from django.contrib import admin
-class Car(models.Model):
-    car_name= models.CharField()
-    car_model = models.CharField()
-    release_date = models.DateField()
-    millage = models.IntegerField()
-    color = models.CharField()
+class car_db(models.Model):
+     car_id=models.IntegerField(primary_key=True)
+     brand=models.CharField(max_length=10)
+     model_car=models.CharField(max_length=10)
+     purchase_date=models.DateField()
+     mileage=models.FloatField(default=0)
+class car_dbAdmin(admin.ModelAdmin):
+    list_display=["car_id","brand","model_car","purchase_date","mileage"]
 
-class CarAdmin(admin.ModelAdmin):
-    list_display = ('car_name', 'car_model', 'release_date', 'millage', 'color')
-   
 admin.py
+
 from django.contrib import admin
-from.models import Car,CarAdmin
-admin.site.register(Car,CarAdmin)
+from .models import car_db,car_dbAdmin
+admin.site.register(car_db,car_dbAdmin)
 ```
 ## OUTPUT
-<img width="1920" height="1080" alt="Screenshot (16)" src="https://github.com/user-attachments/assets/948ae4a6-cbd3-4052-8977-0dbf40ecc68d" />
+
+<img width="1444" height="753" alt="Screenshot (89)" src="https://github.com/user-attachments/assets/ee87087b-9783-4fe6-88c6-dedd471e3c1b" />
+
 
 
 
